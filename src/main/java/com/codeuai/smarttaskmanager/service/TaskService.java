@@ -7,6 +7,10 @@ import com.codeuai.smarttaskmanager.model.User;
 import com.codeuai.smarttaskmanager.repository.TaskRepository;
 import com.codeuai.smarttaskmanager.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +61,19 @@ public class TaskService {
                 .toList();
     }
 
+    public Page<TaskResponse> findAllPaged(int page, int size, String sortBy) {
+        String username = getCurrentUsername();
+
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+        return taskRepository.findByUserUsername(username, pageable)
+                .map(t -> new TaskResponse(
+                        t.getId(),
+                        t.getTitle(),
+                        t.getDescription(),
+                        t.isCompleted()));
+    }
+
     public TaskResponse findById(Long id) {
         String username = getCurrentUsername();
 
@@ -69,6 +86,24 @@ public class TaskService {
                 task.getTitle(),
                 task.getDescription(),
                 task.isCompleted());
+    }
+
+    public Page<TaskResponse> search(
+            int page,
+            int size,
+            String sortBy,
+            Boolean completed,
+            String query) {
+        String username = getCurrentUsername();
+
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(sortBy));
+
+        return taskRepository.search(username, completed, query, pageable)
+                .map(t -> new TaskResponse(
+                        t.getId(),
+                        t.getTitle(),
+                        t.getDescription(),
+                        t.isCompleted()));
     }
 
     public TaskResponse update(Long id, TaskRequest request) {
