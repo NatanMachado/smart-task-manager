@@ -4,13 +4,12 @@ spring:
 server:
   port: 8080
 
-spring:
-  datasource:
-    url: jdbc:h2:mem:tasksdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
+datasource:
+  url: jdbc:h2:mem:tasksdb
+  driverClassName: org.h2.Driver
+  username: sa
+  password: 
+jpa:
+  hibernate:
+    ddl-auto: update
+  show-sql: true
