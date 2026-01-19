@@ -1,4 +1,4 @@
-package com.codeuai.smart_task_manager;
+package com.codeuai.smarttaskmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

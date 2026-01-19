@@ -1,4 +1,4 @@
-package com.codeuai.smart_task_manager.security;
+package com.codeuai.smarttaskmanager.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

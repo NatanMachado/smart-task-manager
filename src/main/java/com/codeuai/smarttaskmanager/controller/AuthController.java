@@ -1,14 +1,14 @@
-package com.codeuai.smart_task_manager.controller;
+package com.codeuai.smarttaskmanager.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeuai.smart_task_manager.dto.AuthResponse;
-import com.codeuai.smart_task_manager.dto.LoginRequest;
-import com.codeuai.smart_task_manager.dto.RegisterRequest;
-import com.codeuai.smart_task_manager.service.AuthService;
+import com.codeuai.smarttaskmanager.dto.AuthResponse;
+import com.codeuai.smarttaskmanager.dto.LoginRequest;
+import com.codeuai.smarttaskmanager.dto.RegisterRequest;
+import com.codeuai.smarttaskmanager.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 

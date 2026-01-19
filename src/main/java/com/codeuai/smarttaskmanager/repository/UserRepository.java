@@ -1,8 +1,8 @@
-package com.codeuai.smart_task_manager.repository;
+package com.codeuai.smarttaskmanager.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.codeuai.smart_task_manager.model.User;
+import com.codeuai.smarttaskmanager.model.User;
 
 import java.util.Optional;
 

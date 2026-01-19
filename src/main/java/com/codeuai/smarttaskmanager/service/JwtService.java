@@ -1,4 +1,4 @@
-package com.codeuai.smart_task_manager.service;
+package com.codeuai.smarttaskmanager.service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

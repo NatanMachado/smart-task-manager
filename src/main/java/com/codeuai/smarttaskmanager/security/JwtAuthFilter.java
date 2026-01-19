@@ -1,4 +1,4 @@
-package com.codeuai.smart_task_manager.security;
+package com.codeuai.smarttaskmanager.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.codeuai.smart_task_manager.service.JwtService;
+import com.codeuai.smarttaskmanager.service.JwtService;
 
 import java.io.IOException;
 

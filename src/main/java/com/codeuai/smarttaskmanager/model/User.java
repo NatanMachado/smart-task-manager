@@ -1,4 +1,4 @@
-package com.codeuai.smart_task_manager.model;
+package com.codeuai.smarttaskmanager.model;
 
 import jakarta.persistence.*;
 import lombok.*;

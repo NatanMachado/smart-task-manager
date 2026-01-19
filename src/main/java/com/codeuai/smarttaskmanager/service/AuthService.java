@@ -1,10 +1,10 @@
-package com.codeuai.smart_task_manager.service;
+package com.codeuai.smarttaskmanager.service;
 
-import com.codeuai.smart_task_manager.dto.AuthResponse;
-import com.codeuai.smart_task_manager.dto.LoginRequest;
-import com.codeuai.smart_task_manager.dto.RegisterRequest;
-import com.codeuai.smart_task_manager.model.User;
-import com.codeuai.smart_task_manager.repository.UserRepository;
+import com.codeuai.smarttaskmanager.dto.AuthResponse;
+import com.codeuai.smarttaskmanager.dto.LoginRequest;
+import com.codeuai.smarttaskmanager.dto.RegisterRequest;
+import com.codeuai.smarttaskmanager.model.User;
+import com.codeuai.smarttaskmanager.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,4 +1,4 @@
-package com.codeuai.smart_task_manager.dto;
+package com.codeuai.smarttaskmanager.dto;
 
 public record LoginRequest(String username, String password) {
 
