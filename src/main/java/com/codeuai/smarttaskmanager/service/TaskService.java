@@ -1,0 +1,103 @@
+package com.codeuai.smarttaskmanager.service;
+
+import com.codeuai.smarttaskmanager.dto.TaskRequest;
+import com.codeuai.smarttaskmanager.dto.TaskResponse;
+import com.codeuai.smarttaskmanager.model.Task;
+import com.codeuai.smarttaskmanager.model.User;
+import com.codeuai.smarttaskmanager.repository.TaskRepository;
+import com.codeuai.smarttaskmanager.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class TaskService {
+
+    private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
+
+    private String getCurrentUsername() {
+        return (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    public TaskResponse create(TaskRequest request) {
+        String username = getCurrentUsername();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Task task = Task.builder()
+                .title(request.title())
+                .description(request.description())
+                .completed(request.completed())
+                .user(user)
+                .build();
+
+        Task saved = taskRepository.save(task);
+
+        return new TaskResponse(
+                saved.getId(),
+                saved.getTitle(),
+                saved.getDescription(),
+                saved.isCompleted());
+    }
+
+    public List<TaskResponse> findAll() {
+        String username = getCurrentUsername();
+
+        return taskRepository.findByUserUsername(username)
+                .stream()
+                .map(t -> new TaskResponse(
+                        t.getId(),
+                        t.getTitle(),
+                        t.getDescription(),
+                        t.isCompleted()))
+                .toList();
+    }
+
+    public TaskResponse findById(Long id) {
+        String username = getCurrentUsername();
+
+        Task task = taskRepository.findById(id)
+                .filter(t -> t.getUser().getUsername().equals(username))
+                .orElseThrow(() -> new RuntimeException("Task not found or access denied"));
+
+        return new TaskResponse(
+                task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.isCompleted());
+    }
+
+    public TaskResponse update(Long id, TaskRequest request) {
+        String username = getCurrentUsername();
+
+        Task task = taskRepository.findById(id)
+                .filter(t -> t.getUser().getUsername().equals(username))
+                .orElseThrow(() -> new RuntimeException("Task not found or access denied"));
+
+        task.setTitle(request.title());
+        task.setDescription(request.description());
+        task.setCompleted(request.completed());
+
+        Task updated = taskRepository.save(task);
+
+        return new TaskResponse(
+                updated.getId(),
+                updated.getTitle(),
+                updated.getDescription(),
+                updated.isCompleted());
+    }
+
+    public void delete(Long id) {
+        String username = getCurrentUsername();
+
+        Task task = taskRepository.findById(id)
+                .filter(t -> t.getUser().getUsername().equals(username))
+                .orElseThrow(() -> new RuntimeException("Task not found or access denied"));
+
+        taskRepository.delete(task);
+    }
+}
