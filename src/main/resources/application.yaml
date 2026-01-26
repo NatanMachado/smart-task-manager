@@ -1,22 +1,21 @@
 spring:
   application:
     name: SmartTaskManager
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskmanagerdb
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: local
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
 server:
   port: 8080
-
-datasource:
-  url: jdbc:h2:mem:tasksdb
-  driverClassName: org.h2.Driver
-  username: sa
-  password: 
-jpa:
-  hibernate:
-    ddl-auto: update
-  show-sql: true
-cache:
-    type: redis
-data:
-  redis:
-    host: localhost
-    port: 6379
 
