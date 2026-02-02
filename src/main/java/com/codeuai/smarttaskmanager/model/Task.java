@@ -1,5 +1,7 @@
 package com.codeuai.smarttaskmanager.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +23,12 @@ public class Task {
     private String description;
 
     private boolean completed;
+
+    private boolean archived;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime dueDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
